@@ -1,9 +1,9 @@
-#ifndef PLAYER_H_
-#define PLAYER_H_
+#ifndef CHARACTER_H_
+#define CHARACTER_H_
 
 #include <string>
 
-class Player
+class Character
 {
     private:
 	std::string f_name;
@@ -17,10 +17,11 @@ class Player
 	int fort;
 	int wis;
     public:
-	Player();
+	Character();
 	std::string get_name();
 	std::string get_class();
+	int get_exp();
 	void save();
-	void load(std::string fname);
+	void load(std::string file_name);
 };
 #endif

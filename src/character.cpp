@@ -5,7 +5,7 @@
 
 Character::Character()
 {
-    f_name = "Test";
+    f_name = "New";
     l_name = "Guy";
     exp = 0;
 }

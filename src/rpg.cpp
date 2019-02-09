@@ -41,13 +41,15 @@ Character character_select()
 
     while(input < 0)
     {
+	std::cout << "Selection: ";
 	std::cin >> input;
-	std::cout << "You've selected: " << input << std::endl;
+	// Do some input sanitation / checking here
     }
+    std::cout << "You've selected: " << characters[input-1] << std::endl;
 
     if(input != 0)
     {
-	loaded.load(".rpg/Other_Guy");
+	loaded.load(".rpg/"+characters[input-1]);
     }
 
     // returns a loaded character object

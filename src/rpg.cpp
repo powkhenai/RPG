@@ -6,22 +6,6 @@
 #include "character.hpp"
 #include "game_dir.hpp"
 
-/*
-void read_directory(const std::string& name, std::vector<std::string>& v)
-{
-    DIR* dirp = opendir(name.c_str());
-    struct dirent * dp;
-    while ((dp = readdir(dirp)) != NULL) 
-    {
-	if(strcmp(dp->d_name, ".") != 0 && strcmp(dp->d_name, "..") != 0 && dp->d_type != DT_DIR)
-	{
-	    v.push_back(dp->d_name);
-	}
-    }
-    closedir(dirp);
-}
-*/
-
 // character select function
 Character character_select()
 {

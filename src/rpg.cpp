@@ -12,7 +12,7 @@ void read_directory(const std::string& name, std::vector<std::string>& v)
     struct dirent * dp;
     while ((dp = readdir(dirp)) != NULL) 
     {
-	if(strcmp(dp->d_name, ".") != 0 && strcmp(dp->d_name, "..") != 0)
+	if(strcmp(dp->d_name, ".") != 0 && strcmp(dp->d_name, "..") != 0 && dp->d_type != DT_DIR)
 	{
 	    v.push_back(dp->d_name);
 	}
@@ -62,7 +62,9 @@ int main()
     Character character;
 
     //Check for data dir, create it if it doesn't exist
-    if (mkdir(".rpg", 0777) == -1 && strcmp(strerror(errno),"File exists") != 0)
+    if(mkdir(".rpg", 0777) == -1 && strcmp(strerror(errno),"File exists") != 0)
+	std::cerr << "Error: " << strerror(errno) << std::endl;
+    if(mkdir(".rpg/creatures", 0777) == -1 && strcmp(strerror(errno), "File exists") != 0)
 	std::cerr << "Error: " << strerror(errno) << std::endl;
 
     // Call the Character select menu

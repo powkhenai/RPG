@@ -5,6 +5,7 @@
 #include <vector>
 #include "character.hpp"
 #include "game_dir.hpp"
+#include "monster.hpp"
 
 // character select function
 Character character_select()
@@ -76,6 +77,12 @@ int main()
 	    int points = 80;
 	    std::cout << character.get_name() << " has earned " << points << " experience points!" << std::endl;
 	    character.award_exp(points);
+	}
+	if(input == 'f')
+	{
+	    Monster monster = Monster();
+	    monster.random_spawn();
+	    std::cout << "A " << monster.get_species() << " walks out of the arena..." << std::endl;
 	}
     }
     // We got "Q" so let's save the character and quit the game.

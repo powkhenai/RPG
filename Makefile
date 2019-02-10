@@ -1,9 +1,12 @@
-rpg : obj/rpg.o obj/character.o obj/creature.o
-	clang++ -o rpg obj/rpg.o obj/character.o obj/creature.o
+src = $(wildcard src/*.cpp)
+obj = $(patsubst src/%.cpp,obj/%.o,$(src))
+
+rpg : $(obj)
+	clang++ -o rpg $^
 
 obj/%.o : src/%.cpp
 	clang++ -std=c++17 -Iinclude -o $@ -c $<
 
 clean :
-	rm rpg
 	rm obj/*
+	rm rpg

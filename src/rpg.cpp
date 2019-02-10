@@ -1,11 +1,12 @@
 #include <iostream>
 #include <sys/types.h>
-#include <dirent.h>
 #include <sys/stat.h>
 #include <string.h>
 #include <vector>
 #include "character.hpp"
+#include "game_dir.hpp"
 
+/*
 void read_directory(const std::string& name, std::vector<std::string>& v)
 {
     DIR* dirp = opendir(name.c_str());
@@ -19,6 +20,7 @@ void read_directory(const std::string& name, std::vector<std::string>& v)
     }
     closedir(dirp);
 }
+*/
 
 // character select function
 Character character_select()
@@ -31,7 +33,7 @@ Character character_select()
     std::cout << "Load existing character or create a new one: " << std::endl;
     // can call create_new_character()
     std::cout << menu_count << ": New Character" << std::endl;
-    read_directory(".rpg", characters);
+    characters = read_directory(".rpg");
     // Shows character list
     for (const std::string character : characters)
     {

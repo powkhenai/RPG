@@ -43,6 +43,49 @@ Character character_select()
     return loaded;
 }
 
+// Combat
+int combat(Creature character, Creature monster)
+{
+    int result;
+    // TODO initiative
+    while(character.get_hp() > 0 && monster.get_hp() > 0 && result != -1)
+    {
+	char input = '-';
+	int damage;
+	std::cout << "f: Fight!\n" << "r: Run." << std::endl;
+	std::cout << "Selection: ";
+	std::cin >> input;
+	if(input == 'f')
+	{
+	    // Attack
+	    damage = character.attack(monster);
+	    if(damage > 0)
+		monster.wound(damage);
+	    if(monster.get_hp() <= 0)
+	    {
+		result = 1; // The Character won the combat
+		break;
+	    }
+	    damage = monster.attack(character);
+	    if(damage > 0)
+		character.wound(damage);
+	    if(character.get_hp() <= 0)
+	    {
+		result = 0; // The Monster won the combat
+		break;
+	    }
+	}
+	// Defend / Dodge?
+	// Cast
+	// Run
+	if(input == 'r')
+	{
+	    result = -1; // The Character fled combat
+	}
+    }
+    return result;
+}
+
 int main()
 {
     char input = '-';
@@ -80,16 +123,28 @@ int main()
 	}
 	if(input == 'f')
 	{
+	    int result;
 	    int damage;
 	    Monster monster = Monster();
 	    monster.random_spawn();
 	    std::cout << "A " << monster.get_species() << " walks out of the arena..." << std::endl;
-	    damage = character.attack(monster);
-	    if(damage > 0)
+	    result = combat(character, monster);
+	    if(result == 1)
 	    {
-		monster.wound(damage);
+		std::cout << "You were victorious!" << std::endl;
+		std::cout << "Awarding 5xp." << std::endl;
+		character.award_exp(5);
+	    }
+	    if(result == 0)
+	    {
+		std::cout << "You have fallen in combat..." << std::endl;
+		std::cout << "You're legacy ends here. Perhaps future generations will carry on your legacy." << std::endl;
 	    }
 	    std::cout << "The " << monster.get_species() << " hp is now: " << monster.get_hp() << std::endl;
+	    if(result == -1)
+	    {
+		std::cout << "You managed to escape the " << monster.get_species() << " but you didn't get any stronger from the encounter." << std::endl;
+	    }
 	}
     }
     // We got "Q" so let's save the character and quit the game.

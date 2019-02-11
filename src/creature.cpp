@@ -25,6 +25,25 @@ int Creature::get_hp()
     return hp;
 }
 
+int Creature::defend()
+{
+    int defend = rand() % 20 + fort;
+    std::cout << "Defense: " << defend << std::endl;
+    return defend;
+}
+
+int Creature::attack(Creature opponent)
+{
+    int attack = rand() % 20 + str;
+    std::cout << "Attack: " << attack << std::endl;
+    return attack - opponent.defend();
+}
+
+void Creature::wound(int damage)
+{
+    hp -= damage;
+}
+
 void Creature::save()
 {
     // Open a file

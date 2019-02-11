@@ -10,8 +10,6 @@ class Monster : public Creature
 	// ??
     public:
 	Monster();
-	int defend();
-	int attack();
 	void random_spawn();
 };
 #endif

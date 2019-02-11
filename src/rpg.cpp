@@ -80,9 +80,16 @@ int main()
 	}
 	if(input == 'f')
 	{
+	    int damage;
 	    Monster monster = Monster();
 	    monster.random_spawn();
 	    std::cout << "A " << monster.get_species() << " walks out of the arena..." << std::endl;
+	    damage = character.attack(monster);
+	    if(damage > 0)
+	    {
+		monster.wound(damage);
+	    }
+	    std::cout << "The " << monster.get_species() << " hp is now: " << monster.get_hp() << std::endl;
 	}
     }
     // We got "Q" so let's save the character and quit the game.

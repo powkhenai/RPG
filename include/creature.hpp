@@ -18,6 +18,9 @@ class Creature
 	Creature();
 	std::string get_species();
 	int get_hp();
+	int attack(Creature opponent);
+	int defend();
+	void wound(int damage);
 	void save();
 	void load(std::string file_name);
 };

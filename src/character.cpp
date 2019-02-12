@@ -10,6 +10,17 @@ Character::Character()
     exp = 0;
 }
 
+Character::Character(std::string first, std::string last, int strength, int agility, int inteligence, int charisma, int fortitude, int wisdom)
+{
+    f_name = first;
+    l_name = last;
+    str = strength;
+    agi = agility;
+    intel = inteligence;
+    cha = charisma;
+    fort = fortitude;
+    wis = wisdom;
+
 std::string Character::get_name()
 {
     return f_name+" "+l_name;

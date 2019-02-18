@@ -3,9 +3,23 @@
 #include <sys/stat.h>
 #include <string.h>
 #include <vector>
+#include <unistd.h>
+#include <term.h>
 #include "character.hpp"
 #include "game_dir.hpp"
 #include "monster.hpp"
+
+// Clear the screen
+void ClearScreen()
+{
+    if(!cur_term)
+    {
+	int result;
+	setupterm(NULL, STDOUT_FILENO, &result);
+	if(result <= 0) return;
+    }
+    putp(tigetstr("clear"));
+}
 
 // character select function
 Character character_select()
@@ -192,6 +206,7 @@ int main()
 	    {
 		std::cout << "You managed to escape the " << monster.get_species() << " but you didn't get any stronger from the encounter." << std::endl;
 	    }
+	    ClearScreen();
 	}
     }
     // We got "Q" so let's save the character and quit the game.

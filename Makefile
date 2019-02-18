@@ -4,7 +4,7 @@ obj = $(patsubst src/%.cpp,obj/%.o,$(src))
 all: directories rpg
 
 rpg : $(obj)
-	clang++ -o rpg $^
+	clang++ -o rpg $^ -lncurses
 
 obj/%.o : src/%.cpp
 	clang++ -std=c++17 -Iinclude -o $@ -c $<

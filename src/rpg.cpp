@@ -156,15 +156,18 @@ int main()
     // Call the Character select menu
     character = character_select();
     std::cout << "You've chosen to play as:" << std::endl;
-    std::cout << character.get_name() << std::endl;
-    std::cout << character.get_species() << std::endl;
-    std::cout << "Exp: " << character.get_exp() << std::endl;
-    std::cout << "HP: " << character.get_hp() << std::endl;
-    
+        
     // Main game loop
     while(input != 'Q')
     {
+	std::cout << character.get_name() << std::endl;
+	std::cout << character.get_species() << std::endl;
+	std::cout << "Exp: " << character.get_exp() << std::endl;
+	std::cout << "HP: " << character.get_hp() << std::endl;
+	std::cout << std::endl;
+
 	// Action Menu
+	std::cout << "Menu:" << std::endl;
 	std::cout << "g: 'Grow your Power!'" << std::endl;
 	std::cout << "f: 'Fight a Monster in the arena!'" << std::endl;
 	std::cout << "h: 'Heal up and replentish HP!'" << std::endl;
@@ -181,7 +184,7 @@ int main()
 	if(input == 'h')
 	{
 	    character.heal();
-	    std::cout << "After consuming the refrshing red potion, your HP is " << character.get_hp() << std::endl;
+	    character.consume_exp(10);
 	}
 	if(input == 'f')
 	{
@@ -206,6 +209,9 @@ int main()
 	    {
 		std::cout << "You managed to escape the " << monster.get_species() << " but you didn't get any stronger from the encounter." << std::endl;
 	    }
+	    // double cin.get() to wait for an enter press before clearing the screan.
+	    std::cin.get();
+	    std::cin.get();
 	    ClearScreen();
 	}
     }

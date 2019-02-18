@@ -88,7 +88,24 @@ void Creature::wound(int damage)
 
 void Creature::heal()
 {
-    hp = str * fort;
+    int max_hp = str * fort;
+    int healing = max_hp - hp;
+    char input = '-';
+    std::cout << "Heal " << healing << " for 10 exp points?" << std::endl;
+    while(input != 'n' && input != 'y')
+    {
+	std::cout << "y: Yes\n" << "n: No" << std::endl;
+	std::cin >> input;
+    }
+    if(input == 'y')
+    {
+	hp = max_hp;
+	std::cout << "You have been healed!" << std::endl;
+    }
+    if(input == 'n')
+    {
+	std::cout << "You have not been healed..." << std::endl;
+    }
 }
 
 void Creature::save()

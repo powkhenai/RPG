@@ -31,6 +31,11 @@ void Character::award_exp(int points)
     exp += points;
 }
 
+void Character::consume_exp(int points)
+{
+    exp -= points;
+}
+
 void Character::save()
 {
     // Open a file

@@ -17,6 +17,7 @@ class Character : public Creature
 	std::string get_class();
 	int get_exp();
 	void award_exp(int points);
+	void consume_exp(int points);
 	void save();
 	void load(std::string file_name);
 };

@@ -4,9 +4,12 @@ obj = $(patsubst src/%.cpp,obj/%.o,$(src))
 rpg : $(obj)
 	clang++ -o rpg $^
 
-obj/%.o : src/%.cpp
+obj/%.o : src/%.cpp obj/
 	clang++ -std=c++17 -Iinclude -o $@ -c $<
 
+obj/ : 
+	mkdir obj/
+
 clean :
-	rm obj/*
+	rm -rf obj/
 	rm rpg

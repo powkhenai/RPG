@@ -4,6 +4,7 @@
 #include <dirent.h>
 #include <string>
 #include <vector>
+#include <string.h>
 
 std::vector<std::string> read_directory(const std::string& name);
 

@@ -10,16 +10,11 @@ Character::Character()
     exp = 0;
 }
 
-Character::Character(std::string first, std::string last, int strength, int agility, int inteligence, int charisma, int fortitude, int wisdom)
+Character::Character(std::string first, std::string last, int strength, int agility, int intelligence, int charisma, int fortitude, int wisdom) : Creature::Creature(strength, agility, intelligence, charisma, fortitude, wisdom)
 {
     f_name = first;
     l_name = last;
-    str = strength;
-    agi = agility;
-    intel = inteligence;
-    cha = charisma;
-    fort = fortitude;
-    wis = wisdom;
+}
 
 std::string Character::get_name()
 {
@@ -46,6 +41,7 @@ void Character::save()
     fout << f_name << std::endl;
     fout << l_name << std::endl;
     fout << exp << std::endl;
+    Creature::save(fout);
     fout.close();
 }
 
@@ -59,5 +55,8 @@ void Character::load(const std::string file_name)
     getline(fin, l_name);
     std::cout << f_name << " " << l_name << std::endl;
     fin >> exp;
+    // Consume newline character after reading in exp value.
+    fin.ignore(256, '\n');
+    this->Creature::load(fin);
     fin.close();
 }

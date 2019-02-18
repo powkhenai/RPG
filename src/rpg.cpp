@@ -32,13 +32,43 @@ Character character_select()
 	std::cin >> input;
 	// Do some input sanitation / checking here
     }
-    std::cout << "You've selected: " << characters[input-1] << std::endl;
 
     if(input != 0)
     {
+    	std::cout << "You've selected: " << characters[input-1] << std::endl;
 	loaded.load(".rpg/"+characters[input-1]);
     }
 
+    if(input == 0)
+    {
+	std::string fname;
+	std::string lname;
+	int str;
+	int agi;
+	int intel;
+	int cha;
+	int fort;
+	int wis;
+
+	std::cout << "Enter First Name: ";
+	std::cin >> fname;
+	std::cout << "Enter Last Name: ";
+	std::cin >> lname;
+	std::cout << "Enter Strength Score: ";
+	std::cin >> str;
+	std::cout << "Enter Agility Score: ";
+	std::cin >> agi;
+	std::cout << "Enter Intelligence Score: ";
+	std::cin >> intel;
+	std::cout << "Enter Charisma Score: ";
+	std::cin >> cha;
+	std::cout << "Enter Fortitude Score: ";
+	std::cin >> fort;
+	std::cout << "Enter Wisdome Score: ";
+	std::cin >> wis;
+	loaded = Character(fname, lname, str, agi, intel, cha, fort, wis);
+    }
+		
     // returns a loaded character object
     return loaded;
 }
@@ -111,6 +141,7 @@ int main()
 	// Action Menu
 	std::cout << "g: 'Grow your Power!'" << std::endl;
 	std::cout << "f: 'Fight a Monster in the arena!'" << std::endl;
+	std::cout << "h: 'Heal up and replentish HP!'" << std::endl;
 	std::cout << "Q: 'Quit Adventuring.'" << std::endl;
 	std::cout << "Selection: ";
 	std::cin >> input;
@@ -120,6 +151,11 @@ int main()
 	    int points = 80;
 	    std::cout << character.get_name() << " has earned " << points << " experience points!" << std::endl;
 	    character.award_exp(points);
+	}
+	if(input == 'h')
+	{
+	    character.heal();
+	    std::cout << "After consuming the refrshing red potion, your HP is " << character.get_hp() << std::endl;
 	}
 	if(input == 'f')
 	{

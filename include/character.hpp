@@ -12,7 +12,7 @@ class Character : public Creature
 	long exp;
     public:
 	Character();
-	Character(std::string first, std::string last, int strength, int agility, int inteligence, int charisma, int fortitude, int wisdom);
+	Character(std::string first, std::string last, int strength, int agility, int intelligence, int charisma, int fortitude, int wisdom);
 	std::string get_name();
 	std::string get_class();
 	int get_exp();

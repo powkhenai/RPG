@@ -18,13 +18,13 @@ Creature::Creature()
 Creature::Creature(int strength, int agility, int intelligence, int charisma, int fortitude, int wisdom)
 {
 	species = "Elf";
-	hp = str * fort;
 	str = strength;
 	agi = agility;
 	intel = intelligence;
 	cha = charisma;
 	fort = fortitude;
 	wis = wisdom;
+	hp = str * fort;
 }
 
 std::string Creature::get_species()
@@ -39,7 +39,7 @@ void set_str(int str)
 
 void set_agi(int agi)
 {
-	agi=agi;
+	agi = agi;
 }
 
 void set_intel(int intel)

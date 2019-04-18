@@ -14,6 +14,7 @@ Character::Character(std::string first, std::string last, int strength, int agil
 {
     f_name = first;
     l_name = last;
+    exp = 0;
 }
 
 std::string Character::get_name()

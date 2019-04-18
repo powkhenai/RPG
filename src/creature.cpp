@@ -17,14 +17,15 @@ Creature::Creature()
 
 Creature::Creature(int strength, int agility, int intelligence, int charisma, int fortitude, int wisdom)
 {
-	species = "Elf";
-	hp = str * fort;
-	str = strength;
-	agi = agility;
-	intel = intelligence;
-	cha = charisma;
-	fort = fortitude;
-	wis = wisdom;
+    species = "Elf";
+    str = strength;
+    agi = agility;
+    intel = intelligence;
+    cha = charisma;
+    fort = fortitude;
+    wis = wisdom;
+
+    hp = str * fort;
 }
 
 std::string Creature::get_species()
@@ -32,34 +33,34 @@ std::string Creature::get_species()
     return species;
 }
 
-void set_str(int str)
+void Creature::set_str(int str)
 {
-	str = str;
+    this->str = str;
 }
 
-void set_agi(int agi)
+void Creature::set_agi(int agi)
 {
-	agi=agi;
+    this->agi = agi;
 }
 
-void set_intel(int intel)
+void Creature::set_intel(int intel)
 {
-	intel = intel;
+    this->intel = intel;
 }
 
-void set_cha(int cha)
+void Creature::set_cha(int cha)
 {
-	cha = cha;
+    this->cha = cha;
 }
 
-void set_fort(int fort)
+void Creature::set_fort(int fort)
 {
-	fort = fort;
+    this->fort = fort;
 }
 
-void set_wis(int wis)
+void Creature::set_wis(int wis)
 {
-	wis = wis;
+    this->wis = wis;
 }
 
 int Creature::get_hp()
@@ -94,17 +95,17 @@ void Creature::heal()
     std::cout << "Heal " << healing << " for 10 exp points?" << std::endl;
     while(input != 'n' && input != 'y')
     {
-	std::cout << "y: Yes\n" << "n: No" << std::endl;
-	std::cin >> input;
+    std::cout << "y: Yes\n" << "n: No" << std::endl;
+    std::cin >> input;
     }
     if(input == 'y')
     {
-	hp = max_hp;
-	std::cout << "You have been healed!" << std::endl;
+    hp = max_hp;
+    std::cout << "You have been healed!" << std::endl;
     }
     if(input == 'n')
     {
-	std::cout << "You have not been healed..." << std::endl;
+    std::cout << "You have not been healed..." << std::endl;
     }
 }
 

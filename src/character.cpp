@@ -32,9 +32,14 @@ void Character::award_exp(int points)
     exp += points;
 }
 
-void Character::consume_exp(int points)
+bool Character::consume_exp(int points)
 {
-    exp -= points;
+    if (points <= exp)
+    {
+        exp -= points;
+        return true;
+    }
+    return false;
 }
 
 void Character::save()

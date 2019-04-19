@@ -5,9 +5,9 @@
 #include <vector>
 #include <unistd.h>
 #include <term.h>
-#include "character.hpp"
+#include "creatures/character.hpp"
 #include "game_dir.hpp"
-#include "monster.hpp"
+#include "creatures/monster.hpp"
 
 // Clear the screen
 void ClearScreen()

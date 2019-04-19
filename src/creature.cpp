@@ -1,7 +1,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include "creature.hpp"
+#include "creatures/creature.hpp"
 
 Creature::Creature()
 {

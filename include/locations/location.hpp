@@ -5,7 +5,7 @@
 
 class Location
 {
-    private:
+    protected:
         std::string name;
         std::string description;
         bool hostile;
@@ -15,7 +15,7 @@ class Location
         //    Use map to map spawn rates?
     public:
         Location();
-        Location(std::string name, std::string description, bool hostile);
+        Location(std::string name, std::string description);
         std::string get_name();
         std::string get_description();
         bool is_hostile();

@@ -5,7 +5,7 @@
 
 class Creature
 {
-    private:
+    protected:
         std::string species;
         int hp;
         int str;

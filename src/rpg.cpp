@@ -8,6 +8,7 @@
 #include "creatures/character.hpp"
 #include "game_dir.hpp"
 #include "creatures/monster.hpp"
+#include "locations/combat_location.hpp"
 
 // Clear the screen
 void ClearScreen()
@@ -145,6 +146,7 @@ int main()
 {
     char input = '-';
     Character character;
+    Location arena;
 
     //Check for data dir, create it if it doesn't exist
     if(mkdir(".rpg", 0777) == -1 && strcmp(strerror(errno),"File exists") != 0)
@@ -155,6 +157,10 @@ int main()
     // Call the Character select menu
     character = character_select();
     std::cout << "You've chosen to play as:" << std::endl;
+
+    // Test location loading
+    arena = Combat_Location();
+    arena.load(".rpg/locations/Arena");
 
     // Main game loop
     while(input != 'Q')

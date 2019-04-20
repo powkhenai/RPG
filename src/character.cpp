@@ -58,7 +58,7 @@ void Character::save()
 
 void Character::load(const std::string file_name)
 {
-    std::cout << "Loaing character from file: " << file_name << std::endl;
+    std::cout << "Loading character from file: " << file_name << std::endl;
     std::ifstream fin;
     fin.open(file_name);
     // Read character from file

@@ -7,3 +7,7 @@ This is a simple program building out a basic text based RPG engine, just someth
 [] Inventory
 [] Equipment
 [] Items
+
+####Character
+[] Move character select and creation to the character class
+

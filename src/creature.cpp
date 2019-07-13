@@ -1,6 +1,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include "cpptoml.h"
 #include "creature.hpp"
 
 Creature::Creature()
@@ -143,19 +144,21 @@ void Creature::save(std::ofstream &fout)
 void Creature::load(const std::string file_name)
 {
     std::cout << "Loaing creature from file: " << file_name << std::endl;
-    std::ifstream fin;
-    fin.open(file_name);
+    //std::ifstream fin;
+    //fin.open(file_name);
     // Read character from file
-    getline(fin, species);
+    //getline(fin, species);
+    auto c_file = cpptoml::parse_file(file_name);
+    species = c_file->get_as<std::string>("Species").value_or("Elf");
     std::cout << species << std::endl;
-    fin >> hp;
-    fin >> str;
-    fin >> agi;
-    fin >> intel;
-    fin >> cha;
-    fin >> fort;
-    fin >> wis;
-    fin.close();
+    hp = *c_file->get_as<int>("HP");
+    str = *c_file->get_as<int>("STR");
+    agi = *c_file->get_as<int>("AGI");
+    intel = *c_file->get_as<int>("INT");
+    cha = *c_file->get_as<int>("CHA");
+    fort = *c_file->get_as<int>("FORT");
+    wis = *c_file->get_as<int>("WIS");
+    //fin.close();
 }
 
 void Creature::load(std::ifstream &fin)

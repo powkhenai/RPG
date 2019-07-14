@@ -179,22 +179,27 @@ int main()
         std::cout << "Q: 'Quit Adventuring.'" << std::endl;
         std::cout << "Selection: ";
         std::cin >> input;
-        // do some stuff
+        // Power Up Menu
         if(input == 'g')
         {
+            // Offer options here to buy stat points or levels for EXP
             int points = 80;
             std::cout << character.get_name() << " has earned " << points << " experience points!" << std::endl;
             character.award_exp(points);
         }
+        // Heal Menu
         if(input == 'h')
         {
+            // Currently full heal for 10 EXP, maybe something more complex/interesting?
             if (character.consume_exp(10))
             {
                 character.heal();
             }
         }
+        // Combat menu
         if(input == 'f')
         {
+            // Currently runs a combat loop in the arena, may replace this with an "Exploration menu" and move combat into it's own Encounter? class?
             int result;
             int damage;
             Monster monster = Monster();
@@ -216,7 +221,7 @@ int main()
             {
             std::cout << "You managed to escape the " << monster.get_species() << " but you didn't get any stronger from the encounter." << std::endl;
             }
-            // double cin.get() to wait for an enter press before clearing the screan.
+            // double cin.get() to wait for an enter press before clearing the screen.
             std::cin.get();
             std::cin.get();
             ClearScreen();

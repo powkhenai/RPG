@@ -9,6 +9,7 @@
 #include "game_dir.hpp"
 #include "creatures/monster.hpp"
 #include "locations/combat_location.hpp"
+#include "encounter.hpp"
 
 // Clear the screen
 void ClearScreen()
@@ -87,60 +88,6 @@ Character character_select()
     return loaded;
 }
 
-// Combat
-int combat(Character &character, Creature &monster)
-{
-    int result;
-    // TODO initiative
-    while(character.get_hp() > 0 && monster.get_hp() > 0 && result != -1)
-    {
-    char input = '-';
-    int damage;
-    std::cout << "f: Fight!\n" << "r: Run." << std::endl;
-    std::cout << "Selection: ";
-    std::cin >> input;
-    if(input == 'f')
-    {
-        // Attack
-        damage = character.attack(monster);
-        if(damage > 0)
-        {
-        monster.wound(damage);
-            std::cout << "You hit the " << monster.get_species() << " for " << damage << " points." << std::endl;
-        }
-        else
-        std::cout << "With a mighty swing... you completely miss the " << monster.get_species() << "." << std::endl;
-        if(monster.get_hp() <= 0)
-        {
-        result = 1; // The Character won the combat
-        break;
-        }
-        damage = monster.attack(character);
-        if(damage > 0)
-        {
-        character.wound(damage);
-            std::cout << "The " << monster.get_species() << " hits you for " << damage << "points." << std::endl;
-        }
-        else
-        std::cout << "You depftly dodge the " << monster.get_species() << "'s attack!." << std::endl;
-        if(character.get_hp() <= 0)
-        {
-        result = 0; // The Monster won the combat
-        break;
-        }
-    }
-    std::cout << character.get_name() << "'s hp is: " << character.get_hp() << std::endl;
-    std::cout << monster.get_species() << "'s hp is: " << monster.get_hp() << std::endl;
-    // Defend / Dodge?
-    // Cast
-    // Run
-    if(input == 'r')
-    {
-        result = -1; // The Character fled combat
-    }
-    }
-    return result;
-}
 
 int main()
 {
@@ -204,8 +151,10 @@ int main()
             int damage;
             Monster monster = Monster();
             monster.random_spawn();
+            Encounter encounter = Encounter(character, monster);
             std::cout << "A " << monster.get_species() << " walks out of the arena..." << std::endl;
-            result = combat(character, monster);
+            encounter.main_menu();
+            result = encounter.get_result();
             if(result == 1)
             {
             std::cout << "You were victorious!" << std::endl;

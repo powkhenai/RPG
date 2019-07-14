@@ -1,6 +1,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include "cpptoml.h"
 #include "locations/location.hpp"
 
 Location::Location()
@@ -28,13 +29,12 @@ std::string Location::get_description()
 void Location::load(const std::string file_name)
 {
     std::cout << "Loading location from file: " << file_name << std::endl;
-    std::ifstream fin;
-    fin.open(file_name);
+    auto l_file = cpptoml::parse_file(file_name);
     // Read character from file
-    getline(fin, name);
-    getline(fin, description);
+    name = *l_file->get_as<std::string>("Name");
+    description = *l_file->get_as<std::string>("Description");
     std::cout << name << std::endl;
-    fin.close();
+    std::cout << description << std::endl;
 }
 
 void Location::load(std::ifstream &fin)

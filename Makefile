@@ -7,7 +7,7 @@ rpg : $(obj)
 	clang++ -o rpg $^ -lncurses
 
 obj/%.o : src/%.cpp
-	clang++ -std=c++17 -Iinclude -o $@ -c $<
+	clang++ -std=c++17 -Iinclude -Icpptoml/include -o $@ -c $<
 
 .PHONY: directories
 

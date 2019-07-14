@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include "creatures/character.hpp"
+#include "cpptoml.h"
 
 Character::Character()
 {
@@ -49,25 +50,22 @@ void Character::save()
     std::string filename = ".rpg/"+f_name+"_"+l_name;
     fout.open(filename);
     // Serialize Character to file
-    fout << f_name << std::endl;
-    fout << l_name << std::endl;
-    fout << exp << std::endl;
+    std::shared_ptr<cpptoml::table> root = cpptoml::make_table();
+    root->insert("FirstName", f_name);
+    root->insert("LastName", l_name);
+    root->insert("EXP", exp);
+    fout << *root;
     Creature::save(fout);
     fout.close();
 }
 
 void Character::load(const std::string file_name)
 {
-    std::cout << "Loading character from file: " << file_name << std::endl;
-    std::ifstream fin;
-    fin.open(file_name);
-    // Read character from file
-    getline(fin, f_name);
-    getline(fin, l_name);
+    std::cout << "Loaing character from file: " << file_name << std::endl;
+    auto c_file = cpptoml::parse_file(file_name);
+    f_name = *c_file->get_as<std::string>("FirstName");
+    l_name = *c_file->get_as<std::string>("LastName");
     std::cout << f_name << " " << l_name << std::endl;
-    fin >> exp;
-    // Consume newline character after reading in exp value.
-    fin.ignore(256, '\n');
-    this->Creature::load(fin);
-    fin.close();
+    exp = *c_file->get_as<int>("EXP");
+    this->Creature::load(file_name);
 }

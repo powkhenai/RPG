@@ -14,16 +14,16 @@ Combat_Location::Combat_Location()
 void Combat_Location::load(const std::string file_name)
 {
     std::cout << "Loading location from file: " << file_name << std::endl;
-    std::ifstream fin;
-    fin.open(file_name);
     // Read Combat_location from file
-    getline(fin, name);
-    getline(fin, description);
-    std::cout << name << std::endl;
+    //getline(fin, name);
+    //getline(fin, description);
+    //std::cout << name << std::endl;
     std::string item;
+    this->Location::load(file_name);
+    /*
     while(getline(fin, item))
     {
         spawn_table[item.substr(0, item.find(":"))] = stoi(item.substr(1, item.find(":")));
     }
-    fin.close();
+    */
 }

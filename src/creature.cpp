@@ -131,23 +131,21 @@ void Creature::save()
 void Creature::save(std::ofstream &fout)
 {
     // Serialize Creature to file
-    fout << species << std::endl;
-    fout << hp << std::endl;
-    fout << str << std::endl;
-    fout << agi << std::endl;
-    fout << intel << std::endl;
-    fout << cha << std::endl;
-    fout << fort << std::endl;
-    fout << wis << std::endl;
+    std::shared_ptr<cpptoml::table> root = cpptoml::make_table();
+    root->insert("Species", species);
+    root->insert("HP", hp);
+    root->insert("STR", str);
+    root->insert("AGI", agi);
+    root->insert("INT", intel);
+    root->insert("CHA", cha);
+    root->insert("FORT", fort);
+    root->insert("WIS", wis);
+    fout << *root;
 }
 
 void Creature::load(const std::string file_name)
 {
     std::cout << "Loaing creature from file: " << file_name << std::endl;
-    //std::ifstream fin;
-    //fin.open(file_name);
-    // Read character from file
-    //getline(fin, species);
     auto c_file = cpptoml::parse_file(file_name);
     species = c_file->get_as<std::string>("Species").value_or("Elf");
     std::cout << species << std::endl;
@@ -158,7 +156,6 @@ void Creature::load(const std::string file_name)
     cha = *c_file->get_as<int>("CHA");
     fort = *c_file->get_as<int>("FORT");
     wis = *c_file->get_as<int>("WIS");
-    //fin.close();
 }
 
 void Creature::load(std::ifstream &fin)

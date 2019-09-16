@@ -2,8 +2,8 @@
 #include <fstream>
 #include <iostream>
 #include "encounter.hpp"
-#include "creatures/character.hpp"
-#include "creatures/monster.hpp"
+#include "character/character.hpp"
+#include "creature/monster.hpp"
 
 Encounter::Encounter()
 {

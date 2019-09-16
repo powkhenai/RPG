@@ -2,8 +2,8 @@
 #define ENCOUNTER_H_
 
 #include <string>
-#include "creatures/monster.hpp"
-#include "creatures/character.hpp"
+#include "creature/monster.hpp"
+#include "character/character.hpp"
 
 class Encounter
 {

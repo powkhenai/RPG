@@ -2,7 +2,7 @@
 #define CHARACTER_H_
 
 #include <string>
-#include "creature.hpp"
+#include "creature/creature.hpp"
 
 class Character : public Creature
 {

@@ -1,7 +1,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include "creatures/character.hpp"
+#include "character/character.hpp"
 #include "cpptoml.h"
 
 Character::Character()

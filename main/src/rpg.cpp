@@ -5,10 +5,10 @@
 #include <vector>
 #include <unistd.h>
 #include <term.h>
-#include "creatures/character.hpp"
-#include "game_dir.hpp"
-#include "creatures/monster.hpp"
-#include "locations/combat_location.hpp"
+#include "character/character.hpp"
+#include "directory/game_dir.hpp"
+#include "creature/monster.hpp"
+#include "location/combat_location.hpp"
 #include "encounter.hpp"
 
 // Clear the screen

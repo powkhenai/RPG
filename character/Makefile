@@ -8,7 +8,7 @@ libcharacter : $(obj)
 	ar -r lib/libcharacter.a $^
 
 obj/%.o : src/%.cpp
-	clang++ -std=c++17 -Iinclude -I../creature/include -o $@ -c $<
+	clang++ -std=c++17 -Iinclude -I../creature/include -I../cpptoml/include -o $@ -c $<
 
 .PHONY: directories
 

@@ -1,4 +1,5 @@
 .rpg/
 obj/
+lib/
 rpg
 .DS_Store

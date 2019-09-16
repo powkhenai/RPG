@@ -5,9 +5,11 @@
 #include <vector>
 #include <unistd.h>
 #include <term.h>
-#include "character.hpp"
-#include "game_dir.hpp"
-#include "monster.hpp"
+#include "character/character.hpp"
+#include "directory/game_dir.hpp"
+#include "creature/monster.hpp"
+#include "location/combat_location.hpp"
+#include "encounter.hpp"
 
 // Clear the screen
 void ClearScreen()
@@ -86,65 +88,12 @@ Character character_select()
     return loaded;
 }
 
-// Combat
-int combat(Character &character, Creature &monster)
-{
-    int result;
-    // TODO initiative
-    while(character.get_hp() > 0 && monster.get_hp() > 0 && result != -1)
-    {
-    char input = '-';
-    int damage;
-    std::cout << "f: Fight!\n" << "r: Run." << std::endl;
-    std::cout << "Selection: ";
-    std::cin >> input;
-    if(input == 'f')
-    {
-        // Attack
-        damage = character.attack(monster);
-        if(damage > 0)
-        {
-        monster.wound(damage);
-            std::cout << "You hit the " << monster.get_species() << " for " << damage << " points." << std::endl;
-        }
-        else
-        std::cout << "With a mighty swing... you completely miss the " << monster.get_species() << "." << std::endl;
-        if(monster.get_hp() <= 0)
-        {
-        result = 1; // The Character won the combat
-        break;
-        }
-        damage = monster.attack(character);
-        if(damage > 0)
-        {
-        character.wound(damage);
-            std::cout << "The " << monster.get_species() << " hits you for " << damage << "points." << std::endl;
-        }
-        else
-        std::cout << "You depftly dodge the " << monster.get_species() << "'s attack!." << std::endl;
-        if(character.get_hp() <= 0)
-        {
-        result = 0; // The Monster won the combat
-        break;
-        }
-    }
-    std::cout << character.get_name() << "'s hp is: " << character.get_hp() << std::endl;
-    std::cout << monster.get_species() << "'s hp is: " << monster.get_hp() << std::endl;
-    // Defend / Dodge?
-    // Cast
-    // Run
-    if(input == 'r')
-    {
-        result = -1; // The Character fled combat
-    }
-    }
-    return result;
-}
 
 int main()
 {
     char input = '-';
     Character character;
+    Location arena;
 
     //Check for data dir, create it if it doesn't exist
     if(mkdir(".rpg", 0777) == -1 && strcmp(strerror(errno),"File exists") != 0)
@@ -155,6 +104,10 @@ int main()
     // Call the Character select menu
     character = character_select();
     std::cout << "You've chosen to play as:" << std::endl;
+
+    // Test location loading
+    arena = Combat_Location();
+    arena.load(".rpg/locations/Arena");
 
     // Main game loop
     while(input != 'Q')
@@ -173,28 +126,35 @@ int main()
         std::cout << "Q: 'Quit Adventuring.'" << std::endl;
         std::cout << "Selection: ";
         std::cin >> input;
-        // do some stuff
+        // Power Up Menu
         if(input == 'g')
         {
+            // Offer options here to buy stat points or levels for EXP
             int points = 80;
             std::cout << character.get_name() << " has earned " << points << " experience points!" << std::endl;
             character.award_exp(points);
         }
+        // Heal Menu
         if(input == 'h')
         {
+            // Currently full heal for 10 EXP, maybe something more complex/interesting?
             if (character.consume_exp(10))
             {
                 character.heal();
             }
         }
+        // Combat menu
         if(input == 'f')
         {
+            // Currently runs a combat loop in the arena, may replace this with an "Exploration menu" and move combat into it's own Encounter? class?
             int result;
             int damage;
             Monster monster = Monster();
             monster.random_spawn();
+            Encounter encounter = Encounter(character, monster);
             std::cout << "A " << monster.get_species() << " walks out of the arena..." << std::endl;
-            result = combat(character, monster);
+            encounter.main_menu();
+            result = encounter.get_result();
             if(result == 1)
             {
             std::cout << "You were victorious!" << std::endl;
@@ -210,7 +170,7 @@ int main()
             {
             std::cout << "You managed to escape the " << monster.get_species() << " but you didn't get any stronger from the encounter." << std::endl;
             }
-            // double cin.get() to wait for an enter press before clearing the screan.
+            // double cin.get() to wait for an enter press before clearing the screen.
             std::cin.get();
             std::cin.get();
             ClearScreen();

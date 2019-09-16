@@ -4,7 +4,7 @@
 #include <iostream>
 #include <cstdlib>
 #include "game_dir.hpp"
-#include "monster.hpp"
+#include "creature/monster.hpp"
 
 Monster::Monster()
 {

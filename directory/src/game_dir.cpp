@@ -1,4 +1,4 @@
-#include "game_dir.hpp"
+#include "directory/game_dir.hpp"
 
 std::vector<std::string> read_directory(const std::string& name)
 {

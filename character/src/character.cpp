@@ -1,8 +1,8 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include "character/character.hpp"
 #include "cpptoml.h"
-#include "character.hpp"
 
 Character::Character()
 {

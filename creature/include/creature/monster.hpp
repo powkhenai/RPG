@@ -7,9 +7,9 @@
 class Monster : public Creature
 {
     private:
-	// ??
+        // ??
     public:
-	Monster();
-	void random_spawn();
+        Monster();
+        void random_spawn();
 };
 #endif

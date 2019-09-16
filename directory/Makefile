@@ -1,21 +1,23 @@
 src = $(wildcard src/*.cpp)
 obj = $(patsubst src/%.cpp,obj/%.o,$(src))
 
-all: directories rpg
+all: directories libdirectory
 
-rpg : $(obj)
-	clang++ -o rpg $^ -lncurses
+libdirectory : $(obj)
+	ar -r lib/libdirectory.a $^
 
 obj/%.o : src/%.cpp
 	clang++ -std=c++17 -Iinclude -Icpptoml/include -o $@ -c $<
 
 .PHONY: directories
 
-directories: obj/
+directories: obj/ lib/
 
 obj/:
 	mkdir -p $@
 
+lib/:
+	mkdir -p $@
+
 clean :
-	rm -rf obj/
-	rm rpg
+	rm -rf directories

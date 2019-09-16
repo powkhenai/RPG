@@ -8,9 +8,9 @@ deps:
 	$(MAKE) -C ../creature
 	$(MAKE) -C ../character
 	$(MAKE) -C ../location
-	#$(MAKE) -C ../item
+	$(MAKE) -C ../item
 
-rpg : $(obj) $(deps)
+rpg : $(obj)
 	clang++ -o rpg $^ -L../character/lib -L../creature/lib -L../directory/lib -L../location/lib -lcharacter -lcreature -ldirectory -llocation -lncurses
 
 obj/%.o : src/%.cpp

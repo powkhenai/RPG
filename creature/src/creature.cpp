@@ -1,8 +1,8 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include "creature/creature.hpp"
 #include "cpptoml.h"
-#include "creature.hpp"
 
 Creature::Creature()
 {

@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 #include "location.hpp"
-#include "creatures/monster.hpp"
+#include "creature/monster.hpp"
 
 class Combat_Location : public Location
 {

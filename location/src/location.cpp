@@ -2,7 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include "cpptoml.h"
-#include "locations/location.hpp"
+#include "location/location.hpp"
 
 Location::Location()
 {

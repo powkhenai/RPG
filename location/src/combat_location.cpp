@@ -3,8 +3,8 @@
 #include <fstream>
 #include <iostream>
 #include <cstdlib>
-#include "game_dir.hpp"
-#include "locations/combat_location.hpp"
+#include "directory/game_dir.hpp"
+#include "location/combat_location.hpp"
 
 Combat_Location::Combat_Location()
 {

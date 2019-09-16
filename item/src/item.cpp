@@ -1,168 +1,67 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include "item.hpp"
+#include "item/item.hpp"
+#include "cpptoml.h"
 
 Item::Item()
 {
     name = "Coin";
     type = "Trinket";
-    weight = 1;
     value = 1;
+    weight = 0.1;
+    durability = 1;
 }
 
-Creature::Creature(int strength, int agility, int intelligence, int charisma, int fortitude, int wisdom)
+Item::Item(std::string name, std::string type,  int value, float weight, int durability)
 {
-    species = "Elf";
-    str = strength;
-    agi = agility;
-    intel = intelligence;
-    cha = charisma;
-    fort = fortitude;
-    wis = wisdom;
-
-    hp = str * fort;
+    name = name;
+    type = type;
+    value = value;
+    weight = weight;
+    durability = durability;
 }
 
-std::string Creature::get_species()
+std::string Item::get_type()
 {
-    return species;
+    return type;
 }
 
-void Creature::set_str(int str)
+int Item::get_durability()
 {
-    this->str = str;
+    return durability;
 }
 
-void Creature::set_agi(int agi)
+void Item::damage(int val)
 {
-    this->agi = agi;
+    durability -= val;
 }
 
-void Creature::set_intel(int intel)
+void Item::repair()
 {
-    this->intel = intel;
+   // Reset durability to max? or some percentage thereof? 
+   durability = 10;
 }
 
-void Creature::set_cha(int cha)
+void Item::save(std::ofstream &fout)
 {
-    this->cha = cha;
+    // Serialize Item to file
+    std::shared_ptr<cpptoml::table> root = cpptoml::make_table();
+    root->insert("Name", name);
+    root->insert("Type", type);
+    root->insert("Value", value);
+    root->insert("Weight", weight);
+    root->insert("Durability", durability);
+    fout << *root;
 }
 
-void Creature::set_fort(int fort)
+void Item::load(const std::string file_name)
 {
-    this->fort = fort;
-}
-
-void Creature::set_wis(int wis)
-{
-    this->wis = wis;
-}
-
-int Creature::get_hp()
-{
-    return hp;
-}
-
-int Creature::defend()
-{
-    int defend = rand() % 20 + fort;
-    std::cout << "Defense: " << defend << std::endl;
-    return defend;
-}
-
-int Creature::attack(Creature opponent)
-{
-    int attack = rand() % 20 + str;
-    std::cout << "Attack: " << attack << std::endl;
-    return attack - opponent.defend();
-}
-
-void Creature::wound(int damage)
-{
-    hp -= damage;
-}
-
-void Creature::heal()
-{
-    int max_hp = str * fort;
-    int healing = max_hp - hp;
-    char input = '-';
-    std::cout << "Heal " << healing << " for 10 exp points?" << std::endl;
-    while(input != 'n' && input != 'y')
-    {
-    std::cout << "y: Yes\n" << "n: No" << std::endl;
-    std::cin >> input;
-    }
-    if(input == 'y')
-    {
-    hp = max_hp;
-    std::cout << "You have been healed!" << std::endl;
-    }
-    if(input == 'n')
-    {
-    std::cout << "You have not been healed..." << std::endl;
-    }
-}
-
-void Creature::save()
-{
-    // Open a file
-    std::ofstream fout;
-    std::string filename = ".rpg/creatures/"+species;
-    fout.open(filename);
-    // Serialize Creature to file
-    fout << species << std::endl;
-    fout << hp << std::endl;
-    fout << str << std::endl;
-    fout << agi << std::endl;
-    fout << intel << std::endl;
-    fout << cha << std::endl;
-    fout << fort << std::endl;
-    fout << wis << std::endl;
-    fout.close();
-}
-
-void Creature::save(std::ofstream &fout)
-{
-    // Serialize Creature to file
-    fout << species << std::endl;
-    fout << hp << std::endl;
-    fout << str << std::endl;
-    fout << agi << std::endl;
-    fout << intel << std::endl;
-    fout << cha << std::endl;
-    fout << fort << std::endl;
-    fout << wis << std::endl;
-}
-
-void Creature::load(const std::string file_name)
-{
-    std::cout << "Loaing creature from file: " << file_name << std::endl;
-    std::ifstream fin;
-    fin.open(file_name);
-    // Read character from file
-    getline(fin, species);
-    std::cout << species << std::endl;
-    fin >> hp;
-    fin >> str;
-    fin >> agi;
-    fin >> intel;
-    fin >> cha;
-    fin >> fort;
-    fin >> wis;
-    fin.close();
-}
-
-void Creature::load(std::ifstream &fin)
-{
-    getline(fin, species);
-    std::cout << species << std::endl;
-    fin >> hp;
-    fin >> str;
-    fin >> agi;
-    fin >> intel;
-    fin >> cha;
-    fin >> fort;
-    fin >> wis;
+    std::cout << "Loaing item from file: " << file_name << std::endl;
+    auto c_file = cpptoml::parse_file(file_name);
+    name = *c_file->get_as<std::string>("Name");
+    type = *c_file->get_as<std::string>("Type");
+    value = *c_file->get_as<int>("Value");
+    weight = *c_file->get_as<double>("Weight");
+    durability = *c_file->get_as<int>("Durability");
 }

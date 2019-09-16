@@ -1,7 +1,14 @@
 src = $(wildcard src/*.cpp)
 obj = $(patsubst src/%.cpp,obj/%.o,$(src))
 
-all: directories rpg
+all: directories deps rpg
+
+deps:
+	$(MAKE) -C ../directory
+	$(MAKE) -C ../creature
+	$(MAKE) -C ../character
+	$(MAKE) -C ../location
+	$(MAKE) -C ../item
 
 rpg : $(obj)
 	clang++ -o rpg $^ -L../character/lib -L../creature/lib -L../directory/lib -L../location/lib -lcharacter -lcreature -ldirectory -llocation -lncurses

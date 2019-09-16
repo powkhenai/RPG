@@ -71,7 +71,7 @@ void Encounter::combat()
             if(damage > 0)
             {
             player.wound(damage);
-                std::cout << "The " << opponent.get_species() << " hits you for " << damage << "points." << std::endl;
+                std::cout << "The " << opponent.get_species() << " hits you for " << damage << " points." << std::endl;
             }
             else
             std::cout << "You depftly dodge the " << opponent.get_species() << "'s attack!." << std::endl;

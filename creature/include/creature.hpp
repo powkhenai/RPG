@@ -7,13 +7,13 @@ class Creature
 {
     private:
     std::string species;
-    int wis;
     int hp;
-    int intel;
-    int agi;
-    int cha;
     int str;
+    int agi;
+    int intel;
+    int cha;
     int fort;
+    int wis;
     public:
     Creature();
     Creature(int strength, int agility, int intelligence, int charisma, int fortitude, int wisdom);

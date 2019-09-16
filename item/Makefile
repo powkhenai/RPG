@@ -1,21 +1,24 @@
 src = $(wildcard src/*.cpp)
 obj = $(patsubst src/%.cpp,obj/%.o,$(src))
+dirs = obj/ lib/
 
-all: directories rpg
+all: directories libitem
 
-rpg : $(obj)
-	clang++ -o rpg $^ -lncurses
+libitem : $(obj)
+	ar -r lib/libitem.a $^
 
 obj/%.o : src/%.cpp
 	clang++ -std=c++17 -Iinclude -o $@ -c $<
 
 .PHONY: directories
 
-directories: obj/
+directories: $(dirs)
 
 obj/:
 	mkdir -p $@
 
-clean :
-	rm -rf obj/
-	rm rpg
+lib/:
+	mkdir -p $@
+
+clean : $(dirs)
+	rm -rf $^

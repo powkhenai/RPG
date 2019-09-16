@@ -8,7 +8,7 @@ libitem : $(obj)
 	ar -r lib/libitem.a $^
 
 obj/%.o : src/%.cpp
-	clang++ -std=c++17 -Iinclude -o $@ -c $<
+	clang++ -std=c++17 -Iinclude -I../cpptoml/include -o $@ -c $<
 
 .PHONY: directories
 

@@ -110,24 +110,6 @@ void Creature::heal()
     }
 }
 
-void Creature::save()
-{
-    // Open a file
-    std::ofstream fout;
-    std::string filename = ".rpg/creatures/"+species;
-    fout.open(filename);
-    // Serialize Creature to file
-    fout << species << std::endl;
-    fout << hp << std::endl;
-    fout << str << std::endl;
-    fout << agi << std::endl;
-    fout << intel << std::endl;
-    fout << cha << std::endl;
-    fout << fort << std::endl;
-    fout << wis << std::endl;
-    fout.close();
-}
-
 void Creature::save(std::ofstream &fout)
 {
     // Serialize Creature to file
@@ -156,17 +138,4 @@ void Creature::load(const std::string file_name)
     cha = *c_file->get_as<int>("CHA");
     fort = *c_file->get_as<int>("FORT");
     wis = *c_file->get_as<int>("WIS");
-}
-
-void Creature::load(std::ifstream &fin)
-{
-    getline(fin, species);
-    std::cout << species << std::endl;
-    fin >> hp;
-    fin >> str;
-    fin >> agi;
-    fin >> intel;
-    fin >> cha;
-    fin >> fort;
-    fin >> wis;
 }

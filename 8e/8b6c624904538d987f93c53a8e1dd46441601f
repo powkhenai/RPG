@@ -1,0 +1,22 @@
+include/tui.hpp
+  h_7960fab5215040 1-77
+src/character.cpp
+  h_7960fab5215040 1-112
+src/monster.cpp
+  h_7960fab5215040 1-23
+src/main.cpp
+  h_7960fab5215040 1-152
+src/tui.cpp
+  h_7960fab5215040 1-241
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.9-factset.2",
+  "base_commit_sha": "8e8b6c624904538d987f93c53a8e1dd46441601f",
+  "prompts": {},
+  "humans": {
+    "h_7960fab5215040": {
+      "author": "powkhenai <jakedallen@me.com>"
+    }
+  }
+}

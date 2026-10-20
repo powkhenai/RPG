@@ -1,0 +1,18 @@
+FirstName = "Dax"
+LastName = "Milo"
+Location = "Village"
+EXP = 35
+Species = "Elf"
+CHA = 12
+HP = 84
+STR = 6
+AGI = 12
+INT = 12
+FORT = 14
+WIS = 14
+[[Action]]
+name = "Punch"
+description = "You slam your fist into the opponent with all the force you can muster"
+[[Action.results]]
+type = "attack"
+attribute = "STR"

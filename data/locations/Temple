@@ -1,0 +1,31 @@
+name = "The Temple"
+description = """
+  You enter a sacred temple, its interior illuminated by candlelight. The air is serene and peaceful, filled with the faint scent of incense.
+Stone pillars rise towards a high ceiling, and ornate decorations adorn the walls with symbols of healing and restoration.
+An altar stands at the far end of the temple, and a quiet calm radiates throughout the space.
+A robed figure stands near the altar, tending to their duties."""
+
+[[Action]]
+    name = "Pray at the altar"
+    description = "You approach the altar and kneel in prayer. The peaceful atmosphere washes over you as you meditate."
+    results = [
+        { "type" = "none" }
+    ]
+[[Action]]
+    name = "Speak with the healer"
+    description = "You approach the robed figure and they acknowledge your presence with a gentle nod. They offer to heal your wounds for a small cost of experience points."
+    results = [
+        { "type" = "none" }
+    ]
+[[Action]]
+    name = "Healing for 25 EXP"
+    description = "The healer nods knowingly and begins a soothing incantation. A warm light surrounds you, and your wounds begin to fade away. You feel renewed and refreshed."
+    results = [
+        { "type" = "heal", "exp_cost" = "25" }
+    ]
+[[Action]]
+    name = "Return to the village"
+    description = "You bow respectfully to the healer and make your way back out of the temple towards the village."
+    results = [
+        { "type" = "move", "location" = "Village" }
+    ]

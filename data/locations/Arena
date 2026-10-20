@@ -1,0 +1,21 @@
+name = "The Arena"
+description = "The great walls rise to unreal heights and the smell of old blood fills your nostrils as the roar from the crowd assaults your ears"
+
+[[Action]]
+    name = "Spectate"
+    description = "You watch a brutal battle take place"
+    results = [
+        { "type" = "none" }
+    ]
+[[Action]]
+    name = "Join the fight"
+    description = "You step into the arena and prepare to fight"
+    results = [
+        { "type" = "combat", "enemy" = "Random" }
+    ]
+[[Action]]
+    name = "Return to the Village"
+    description = "You head back to the main town square"
+    results = [
+        { "type" = "move", "location" = "Village" }
+    ]

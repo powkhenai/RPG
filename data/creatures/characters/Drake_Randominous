@@ -1,0 +1,18 @@
+EXP = 95
+LastName = "Randominous"
+Location = "Arena"
+FirstName = "Drake"
+WIS = 17
+FORT = 19
+INT = 8
+Species = "Elf"
+STR = 11
+HP = 239
+CHA = 17
+AGI = 11
+[[Action]]
+description = "You slam your fist into the opponent with all the force you can muster"
+name = "Punch"
+[[Action.results]]
+type = "attack"
+attribute = "STR"

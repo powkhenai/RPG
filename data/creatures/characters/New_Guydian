@@ -1,0 +1,18 @@
+FirstName = "New"
+LastName = "Guydian"
+Location = "Temple"
+EXP = 5
+Species = "Elf"
+CHA = 17
+HP = 55
+STR = 5
+AGI = 13
+INT = 6
+FORT = 11
+WIS = 10
+[[Action]]
+name = "Punch"
+description = "You slam your fist into the opponent with all the force you can muster"
+[[Action.results]]
+type = "attack"
+attribute = "STR"

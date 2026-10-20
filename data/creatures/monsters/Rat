@@ -1,0 +1,15 @@
+Species = "Rat"
+HP = 10
+STR = 5
+AGI = 12
+INT = 1
+CHA = 1
+FORT = 3
+WIS = 1
+
+[[Action]]
+    name = "Bite"
+    description = "The rat lunges, pointy teeth bared, and bites at your exposed flesh"
+    results = [
+        { "type" = "attack", "attribute" = "STR" }
+    ]

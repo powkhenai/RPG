@@ -1,0 +1,28 @@
+name = "The Direfruit Tree"
+description = """
+  You awaken as a cool breeze blows across your face and blink at the mottled sunlight filtering through the leaves of a tree.
+You are lying on a bed of soft moss, surrounded by the sounds of birds and rustling leaves.
+The air is filled with the scent of earth and greenery.
+As you sit up, you notice that you are in a small clearing, with a single tree standing in the center.
+The tree's branches are heavy with ripe, juicy fruits that glisten in the sunlight.
+You see a path leading out of the clearing to the south, and through the trees a small village can be seen in the distance.
+What do you do?"""
+
+[[Action]]
+    name = "Examine the tree"
+    description = "The tree is tall and sturdy, with a thick trunk and wide branches. The fruits hanging from the branches are large and round, with a deep red color and a sweet aroma. They look delicious and inviting."
+    results = [
+        { "type" = "none" }
+    ]
+[[Action]]
+    name = "Pick a fruit"
+    description = "You reach up and pluck one of the ripe fruits from the tree. As you take a bite, the sweet juice bursts in your mouth, you suddenly feel drowsy and your vision blurs. You fall unconcious."
+    results = [
+        { "type" = "move", "location" = "Start" }
+    ]
+[[Action]]
+    name = "Follow the path south"
+    description = "You decide to follow the path leading out of the clearing. As you walk, you can hear the sounds of the village growing louder. The path winds through the trees, leading you towards the outskirts of the village where you can see people going about their daily lives."
+    results = [
+        { "type" = "move", "location" = "Village" }
+    ]

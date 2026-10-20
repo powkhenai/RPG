@@ -1,0 +1,34 @@
+name = "The Village"
+description = "The village is small but bustling, you can hear distant cheering and laughter coming from the center of the village. The streets are lined with small shops and houses, and you can see people going about their daily lives. The air is filled with the sounds of children playing and merchants calling out their wares."
+
+[[Action]]
+    name = "Explore the village"
+    description = "You decide to explore the village, taking in the sights and sounds around you. The streets are lively, with villagers going about their daily routines."
+    results = [
+        { "type" = "none" },
+        { "type" = "combat", "enemy" = "Goblin" }
+    ]
+[[Action]]
+    name = "Visit the market"
+    description = "You make your way to the market, where various stalls are set up selling fresh produce, handmade goods, and other items."
+    results = [
+        { "type" = "none" }
+    ]
+[[Action]]
+    name = "Talk to the villagers"
+    description = "You approach a group of villagers and strike up a conversation, learning more about the village and its inhabitants."
+    results = [
+        { "type" = "none" }
+    ]
+[[Action]]
+    name = "Follow the sounds of cheering"
+    description = "You follow the sounds of cheering, leading you to the center of the village where a small but packed arena is hosting gladiatorial battles."
+    results = [
+        { "type" = "move", "location" = "Arena" }
+    ]
+[[Action]]
+    name = "See the temple"
+    description = "You notice a sacred temple on the outskirts of the village, marked by stone pillars and a peaceful aura. You make your way towards it."
+    results = [
+        { "type" = "move", "location" = "Temple" }
+    ]

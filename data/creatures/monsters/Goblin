@@ -1,0 +1,16 @@
+Species = "Goblin"
+HP = 15
+STR = 7
+AGI = 8
+INT = 7
+CHA = 3
+FORT = 5
+WIS = 3
+
+[[Action]]
+    name = "Claw and Gnaw"
+    description = "The Goblin lunges toward you, pointy teeth bared and claws flexed, it rakes and bites at you furiously!"
+    results = [
+        { "type" = "attack", "attribute" = "STR" }
+    ]
+
